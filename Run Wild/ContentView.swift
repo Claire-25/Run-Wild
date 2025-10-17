@@ -11,25 +11,54 @@ import MapKit
 struct ContentView: View {
     @State private var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194),
-        span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+        span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
     )
-    @State private var currentLocation = ""
-    @State private var destination = ""
-    @State private var distance = ""
-    @State private var selectedShape = 0
-    @State private var bottomSheetOffset: CGFloat = 0
-    
-    
+
+    @State private var currentOffset: CGFloat = 400 // starting collapsed
+    @State private var dragOffset: CGFloat = 0
+
+    let maxHeight: CGFloat = 100   // fully collapsed offset (higher = lower on screen)
+    let minHeight: CGFloat = 400   // fully expanded offset (smaller = higher on screen)
+
     var body: some View {
         ZStack {
-            // Background map
+            // MAP
             Map(coordinateRegion: $region)
                 .ignoresSafeArea()
-            
-            
+
+            // Dim background when panel up
+            Color.black
+                .opacity(currentOffset < 250 ? 0.25 : 0)
+                .ignoresSafeArea()
+                .animation(.easeInOut, value: currentOffset)
+
+            // BOTTOM SHEET
+            VStack {
+                Spacer()
+                BottomPanelView()
+                    .offset(y: currentOffset + dragOffset)
+                    .gesture(
+                        DragGesture()
+                            .onChanged { gesture in
+                                dragOffset = gesture.translation.height
+                            }
+                            .onEnded { gesture in
+                                withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
+                                    if gesture.translation.height < -50 {
+                                        // drag up
+                                        currentOffset = maxHeight
+                                    } else if gesture.translation.height > 50 {
+                                        // drag down
+                                        currentOffset = minHeight
+                                    }
+                                    dragOffset = 0
+                                }
+                            }
+                    )
+            }
         }
-        
+        .onAppear {
+            currentOffset = minHeight // start collapsed at bottom
+        }
     }
-    
-   
 }
