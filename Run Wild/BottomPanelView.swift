@@ -7,22 +7,24 @@
 import SwiftUI
 
 struct BottomPanelView: View {
-    @State private var distance = ""
-    @State private var selectedShape = 0
+  //  @State private var distance = ""
+  //  @State private var selectedShape = 0
+    @EnvironmentObject var appData: AppData
     let shapes = ["Bird", "Bunny", "Butterfly", "Shrimp"]
   
     var body: some View {
         VStack(spacing: 16) {
-            Capsule()
-                .frame(width: 40, height: 5)
-                .foregroundColor(.gray.opacity(0.4))
-                .padding(.top, 8)
+//            Capsule()
+//                .frame(width: 40, height: 5)
+//                .foregroundColor(.gray.opacity(0.4))
+//                .padding(.top, 8)
+            
 
             // Distance input
             VStack(alignment: .leading) {
                 Text("Distance Goal")
                     .font(.headline)
-                TextField("Enter miles...", text: $distance)
+                TextField("Enter miles...", text: $appData.distance)
                     .textFieldStyle(.roundedBorder)
                     .keyboardType(.decimalPad)
             }
@@ -33,25 +35,25 @@ struct BottomPanelView: View {
                     .font(.headline)
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 15) {
-                        ForEach(0..<shapes.count, id: \.self) { index in
+                        ForEach(shapes, id: \.self) { shape in
                             Button(action: {
-                                selectedShape = index
+                                appData.selectedShape = shape
                             }) {
                                 ZStack {
                                     Circle()
-                                        .fill(selectedShape == index ? Color.blue.opacity(0.3) : Color.gray.opacity(0.1))
+                                        .fill(appData.selectedShape == shape ? Color.blue.opacity(0.3) : Color.gray.opacity(0.1))
                                         .frame(width: 80, height: 80)
-                                    
-                                    VStack {
-                                        Image(shapes[index])
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 50, height: 50)
-                                    }
+
+                                    Image(shape) // assumes you have images named exactly "Bird", "Bunny", etc.
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 50, height: 50)
                                 }
-                            }
+                            
                         }
                     }
+                }
+
                 }
             }
 
