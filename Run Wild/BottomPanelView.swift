@@ -47,7 +47,6 @@ struct BottomPanelView: View {
                                             .resizable()
                                             .scaledToFit()
                                             .frame(width: 50, height: 50)
-    
                                     }
                                 }
                             }
