@@ -13,6 +13,7 @@ struct ContentView: View {
         center: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194),
         span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
     )
+    
 
     @State private var currentOffset: CGFloat = 400 // starting collapsed
     @State private var dragOffset: CGFloat = 0

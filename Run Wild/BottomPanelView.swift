@@ -9,8 +9,8 @@ import SwiftUI
 struct BottomPanelView: View {
     @State private var distance = ""
     @State private var selectedShape = 0
-    let shapes = ["cat", "dog", "fox", "eagle"]
-
+    let shapes = ["Bird", "Bunny", "Butterfly", "Shrimp"]
+  
     var body: some View {
         VStack(spacing: 16) {
             Capsule()
@@ -40,9 +40,15 @@ struct BottomPanelView: View {
                                 ZStack {
                                     Circle()
                                         .fill(selectedShape == index ? Color.blue.opacity(0.3) : Color.gray.opacity(0.1))
-                                        .frame(width: 70, height: 70)
-                                    Text(shapes[index].capitalized)
-                                        .font(.caption)
+                                        .frame(width: 80, height: 80)
+                                    
+                                    VStack {
+                                        Image(shapes[index])
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 50, height: 50)
+    
+                                    }
                                 }
                             }
                         }
