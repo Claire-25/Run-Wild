@@ -11,8 +11,8 @@ struct AnimatedLoginView: View {
 
     var body: some View {
         ZStack {
-            // Solid green background
-            Color.green
+            // Solid brown background
+            Color.brown
                 .ignoresSafeArea()
 
             // Floating leaves
@@ -87,12 +87,12 @@ struct AnimatedLoginView: View {
                         .frame(maxWidth: .infinity)
                         .padding()
                         .background(
-                            LinearGradient(colors: [Color.green.opacity(0.8), Color.green],
+                            LinearGradient(colors: [Color.yellow.opacity(0.8), Color.yellow],
                                            startPoint: .leading,
                                            endPoint: .trailing)
                         )
                         .cornerRadius(15)
-                        .shadow(color: Color.green.opacity(0.4), radius: 10, x: 0, y: 5)
+                        .shadow(color: Color.yellow.opacity(0.4), radius: 10, x: 0, y: 5)
                 }
                 .padding(.horizontal, 30)
 
