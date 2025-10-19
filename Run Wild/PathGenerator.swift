@@ -60,46 +60,59 @@ struct RouteMapView: UIViewRepresentable {
 // MARK: - Route Generator
 
 struct RouteGenerator {
-    static func generateRoute(for animal: String, at start: CLLocationCoordinate2D) -> [CLLocationCoordinate2D] {
+    static func generateRoute(for animal: String, at start: CLLocationCoordinate2D, distanceGoal: Double = 1.0) -> [CLLocationCoordinate2D] {
         let lat = start.latitude
         let lon = start.longitude
-        let d = 0.001 // roughly ~100 meters per step
+        let d = 0.001 * distanceGoal // scale by distance goal
+        var coords: [CLLocationCoordinate2D] = []
 
         switch animal {
         case "Bird":
-            return [
+            // Simple bird “V” shape
+            coords = [
                 CLLocationCoordinate2D(latitude: lat, longitude: lon),
                 CLLocationCoordinate2D(latitude: lat + d, longitude: lon + d),
                 CLLocationCoordinate2D(latitude: lat + 2*d, longitude: lon),
-                CLLocationCoordinate2D(latitude: lat + d, longitude: lon - d),
-                CLLocationCoordinate2D(latitude: lat, longitude: lon)
-            ]
-        case "Bunny":
-            return [
-                CLLocationCoordinate2D(latitude: lat, longitude: lon),
-                CLLocationCoordinate2D(latitude: lat + d, longitude: lon + 0.5*d),
-                CLLocationCoordinate2D(latitude: lat + 1.5*d, longitude: lon),
+                CLLocationCoordinate2D(latitude: lat + 3*d, longitude: lon + 0.5*d),
+                CLLocationCoordinate2D(latitude: lat + 2*d, longitude: lon - d),
                 CLLocationCoordinate2D(latitude: lat + d, longitude: lon - 0.5*d),
                 CLLocationCoordinate2D(latitude: lat, longitude: lon)
             ]
+            
+        case "Bunny":
+            // Bunny ears, head, body
+            coords = [
+                CLLocationCoordinate2D(latitude: lat, longitude: lon),
+                CLLocationCoordinate2D(latitude: lat + 0.2*d, longitude: lon + 0.05*d),
+                CLLocationCoordinate2D(latitude: lat + 0.5*d, longitude: lon + 0.1*d), // head
+                CLLocationCoordinate2D(latitude: lat + 0.8*d, longitude: lon + 0.05*d), // right ear
+                CLLocationCoordinate2D(latitude: lat + 0.75*d, longitude: lon - 0.05*d), // left ear
+                CLLocationCoordinate2D(latitude: lat + 0.5*d, longitude: lon - 0.1*d), // head left
+                CLLocationCoordinate2D(latitude: lat + 0.2*d, longitude: lon - 0.05*d), // body left
+                CLLocationCoordinate2D(latitude: lat, longitude: lon)
+            ]
+            
         case "Butterfly":
-            return [
-                CLLocationCoordinate2D(latitude: lat, longitude: lon),
-                CLLocationCoordinate2D(latitude: lat + d, longitude: lon + d),
-                CLLocationCoordinate2D(latitude: lat + 0.5*d, longitude: lon),
-                CLLocationCoordinate2D(latitude: lat + d, longitude: lon - d),
-                CLLocationCoordinate2D(latitude: lat, longitude: lon)
-            ]
+            // Parametric butterfly wings
+            for t in stride(from: 0.0, to: 2*Double.pi, by: 0.1) {
+                let x = d * cos(t) * (1 + 0.5 * sin(4*t))
+                let y = d * sin(t) * (1 + 0.5 * cos(3*t))
+                coords.append(CLLocationCoordinate2D(latitude: lat + y, longitude: lon + x))
+            }
+            
         case "Shrimp":
-            return [
-                CLLocationCoordinate2D(latitude: lat, longitude: lon),
-                CLLocationCoordinate2D(latitude: lat + d, longitude: lon + 0.3*d),
-                CLLocationCoordinate2D(latitude: lat + 2*d, longitude: lon),
-                CLLocationCoordinate2D(latitude: lat + d, longitude: lon - 0.3*d),
-                CLLocationCoordinate2D(latitude: lat, longitude: lon)
-            ]
+            // Shrimp-like curved body
+            for i in 0...50 {
+                let theta = Double(i)/50 * Double.pi // half circle
+                let x = d * theta * 0.6
+                let y = d * sin(theta) * 0.5
+                coords.append(CLLocationCoordinate2D(latitude: lat + y, longitude: lon + x))
+            }
+            
         default:
-            return []
+            coords = [start]
         }
+
+        return coords
     }
 }

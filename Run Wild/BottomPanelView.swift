@@ -58,7 +58,8 @@ struct BottomPanelView: View {
             }
 
             Button("Generate Path") {
-                // TODO: connect to PathGenerator
+                guard let start = appData.userLocation else { return }
+                appData.routeCoordinates = RouteGenerator.generateRoute(for: appData.selectedShape, at: start)
             }
             .buttonStyle(.borderedProminent)
             .frame(maxWidth: .infinity)
