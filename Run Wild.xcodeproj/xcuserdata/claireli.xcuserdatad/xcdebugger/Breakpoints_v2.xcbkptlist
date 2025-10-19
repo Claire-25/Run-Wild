@@ -18,6 +18,36 @@
             endingLineNumber = "11"
             landmarkName = "LocationManager"
             landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "9C6BABE5-FF89-4D57-A425-ACFFE6148AAF - 7d702bc351449da6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Run_Wild.LocationManager.__isolated_deallocating_deinit"
+                  moduleName = "Run Wild.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/claireli/Documents/Run%20Wild/Run%20Wild/CurrentLocation.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0">
+               </Location>
+               <Location
+                  uuid = "9C6BABE5-FF89-4D57-A425-ACFFE6148AAF - ccfc22fa27f97c65"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Run_Wild.LocationManager.__deallocating_deinit"
+                  moduleName = "Run Wild.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/claireli/Documents/Run%20Wild/Run%20Wild/CurrentLocation.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -10,22 +10,9 @@
 		FC0345A62EA01FF40038CAF7 /* Run Wild.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Run Wild.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		9F2E68C72EA46A5600AC50CB /* Exceptions for "Run Wild" folder in "Run Wild" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				"Run-Wild-Info.plist",
-			);
-			target = FC0345A52EA01FF40038CAF7 /* Run Wild */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		FC0345A82EA01FF40038CAF7 /* Run Wild */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				9F2E68C72EA46A5600AC50CB /* Exceptions for "Run Wild" folder in "Run Wild" target */,
-			);
 			path = "Run Wild";
 			sourceTree = "<group>";
 		};
