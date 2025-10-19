@@ -1,5 +1,5 @@
 //
-//  Untitled.swift
+//  CurrentLocation.swift
 //  Run Wild
 //
 //  Created by Charlie Liang on 10/18/25.

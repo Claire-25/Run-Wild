@@ -4,35 +4,54 @@
 //
 //  Created by Claire Li on 10/15/25.
 //
-
 import SwiftUI
 import MapKit
 
 struct ContentView: View {
-    @State private var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194),
-        span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+    @StateObject private var locationManager = LocationManager()
+    
+    @State private var position: MapCameraPosition = .region(
+        MKCoordinateRegion(
+            center: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194),
+            span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        )
     )
     
-
+    private func updatePosition() {
+        if let lat = locationManager.userLatitude,
+           let long = locationManager.userLongitude {
+            position = .region(
+                MKCoordinateRegion(
+                    center: CLLocationCoordinate2D(latitude: lat, longitude: long),
+                    span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+                )
+            )
+        }
+    }
+    
     @State private var currentOffset: CGFloat = 400 // starting collapsed
     @State private var dragOffset: CGFloat = 0
-
     let maxHeight: CGFloat = 100   // fully collapsed offset (higher = lower on screen)
     let minHeight: CGFloat = 400   // fully expanded offset (smaller = higher on screen)
-
+    
     var body: some View {
         ZStack {
             // MAP
-            Map(coordinateRegion: $region)
+            Map(position: $position)
                 .ignoresSafeArea()
-
+                .onAppear {
+                    updatePosition()
+                }
+                .onChange(of: locationManager.userLatitude) {
+                    updatePosition()
+                }
+            
             // Dim background when panel up
             Color.black
                 .opacity(currentOffset < 250 ? 0.25 : 0)
                 .ignoresSafeArea()
                 .animation(.easeInOut, value: currentOffset)
-
+            
             // BOTTOM SHEET
             VStack {
                 Spacer()
