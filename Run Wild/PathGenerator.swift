@@ -68,46 +68,195 @@ struct RouteGenerator {
 
         switch animal {
         case "Bird":
-            // Simple bird “V” shape
+            // Detailed bird shape with head, body, wings, and tail
             coords = [
+                // Start at tail
                 CLLocationCoordinate2D(latitude: lat, longitude: lon),
-                CLLocationCoordinate2D(latitude: lat + d, longitude: lon + d),
-                CLLocationCoordinate2D(latitude: lat + 2*d, longitude: lon),
-                CLLocationCoordinate2D(latitude: lat + 3*d, longitude: lon + 0.5*d),
-                CLLocationCoordinate2D(latitude: lat + 2*d, longitude: lon - d),
-                CLLocationCoordinate2D(latitude: lat + d, longitude: lon - 0.5*d),
+                // Tail feathers (fan shape)
+                CLLocationCoordinate2D(latitude: lat + 0.2*d, longitude: lon + 0.3*d),
+                CLLocationCoordinate2D(latitude: lat + 0.1*d, longitude: lon + 0.5*d),
+                CLLocationCoordinate2D(latitude: lat + 0.1*d, longitude: lon - 0.5*d),
+                CLLocationCoordinate2D(latitude: lat + 0.2*d, longitude: lon - 0.3*d),
+                // Back to tail center
+                CLLocationCoordinate2D(latitude: lat, longitude: lon),
+                // Body
+                CLLocationCoordinate2D(latitude: lat + 0.8*d, longitude: lon),
+                // Head
+                CLLocationCoordinate2D(latitude: lat + 1.2*d, longitude: lon + 0.1*d),
+                // Beak
+                CLLocationCoordinate2D(latitude: lat + 1.4*d, longitude: lon + 0.2*d),
+                // Top of head
+                CLLocationCoordinate2D(latitude: lat + 1.3*d, longitude: lon + 0.3*d),
+                // Left wing (detailed with feathers)
+                CLLocationCoordinate2D(latitude: lat + 1.0*d, longitude: lon + 0.6*d),
+                // Primary feathers
+                CLLocationCoordinate2D(latitude: lat + 0.8*d, longitude: lon + 0.9*d),
+                CLLocationCoordinate2D(latitude: lat + 0.5*d, longitude: lon + 1.1*d),
+                CLLocationCoordinate2D(latitude: lat + 0.2*d, longitude: lon + 1.0*d),
+                // Secondary feathers
+                CLLocationCoordinate2D(latitude: lat + 0.4*d, longitude: lon + 0.8*d),
+                CLLocationCoordinate2D(latitude: lat + 0.1*d, longitude: lon + 0.6*d),
+                // Wing tip
+                CLLocationCoordinate2D(latitude: lat + 0.05*d, longitude: lon + 0.3*d),
+                // Back to body
+                CLLocationCoordinate2D(latitude: lat + 0.8*d, longitude: lon),
+                // Right wing (detailed with feathers)
+                CLLocationCoordinate2D(latitude: lat + 1.0*d, longitude: lon - 0.6*d),
+                // Primary feathers
+                CLLocationCoordinate2D(latitude: lat + 0.8*d, longitude: lon - 0.9*d),
+                CLLocationCoordinate2D(latitude: lat + 0.5*d, longitude: lon - 1.1*d),
+                CLLocationCoordinate2D(latitude: lat + 0.2*d, longitude: lon - 1.0*d),
+                // Secondary feathers
+                CLLocationCoordinate2D(latitude: lat + 0.4*d, longitude: lon - 0.8*d),
+                CLLocationCoordinate2D(latitude: lat + 0.1*d, longitude: lon - 0.6*d),
+                // Wing tip
+                CLLocationCoordinate2D(latitude: lat + 0.05*d, longitude: lon - 0.3*d),
+                // Back to body
+                CLLocationCoordinate2D(latitude: lat + 0.8*d, longitude: lon),
+                // Back to tail
                 CLLocationCoordinate2D(latitude: lat, longitude: lon)
             ]
             
         case "Bunny":
-            // Bunny ears, head, body
+            // Detailed bunny with ears, head, body, and tail
             coords = [
+                // Start at tail (small circle)
                 CLLocationCoordinate2D(latitude: lat, longitude: lon),
-                CLLocationCoordinate2D(latitude: lat + 0.2*d, longitude: lon + 0.05*d),
-                CLLocationCoordinate2D(latitude: lat + 0.5*d, longitude: lon + 0.1*d), // head
-                CLLocationCoordinate2D(latitude: lat + 0.8*d, longitude: lon + 0.05*d), // right ear
-                CLLocationCoordinate2D(latitude: lat + 0.75*d, longitude: lon - 0.05*d), // left ear
-                CLLocationCoordinate2D(latitude: lat + 0.5*d, longitude: lon - 0.1*d), // head left
-                CLLocationCoordinate2D(latitude: lat + 0.2*d, longitude: lon - 0.05*d), // body left
+                CLLocationCoordinate2D(latitude: lat + 0.1*d, longitude: lon + 0.1*d),
+                CLLocationCoordinate2D(latitude: lat + 0.1*d, longitude: lon - 0.1*d),
+                CLLocationCoordinate2D(latitude: lat, longitude: lon),
+                // Body (oval shape)
+                CLLocationCoordinate2D(latitude: lat + 0.3*d, longitude: lon + 0.15*d),
+                CLLocationCoordinate2D(latitude: lat + 0.6*d, longitude: lon + 0.2*d),
+                CLLocationCoordinate2D(latitude: lat + 0.8*d, longitude: lon + 0.1*d),
+                // Head
+                CLLocationCoordinate2D(latitude: lat + 1.0*d, longitude: lon + 0.05*d),
+                CLLocationCoordinate2D(latitude: lat + 1.1*d, longitude: lon),
+                // Left ear (long and pointed)
+                CLLocationCoordinate2D(latitude: lat + 1.2*d, longitude: lon + 0.1*d),
+                CLLocationCoordinate2D(latitude: lat + 1.4*d, longitude: lon + 0.2*d),
+                CLLocationCoordinate2D(latitude: lat + 1.3*d, longitude: lon + 0.3*d),
+                CLLocationCoordinate2D(latitude: lat + 1.1*d, longitude: lon + 0.25*d),
+                // Back to head
+                CLLocationCoordinate2D(latitude: lat + 1.0*d, longitude: lon + 0.05*d),
+                // Right ear (long and pointed)
+                CLLocationCoordinate2D(latitude: lat + 1.2*d, longitude: lon - 0.1*d),
+                CLLocationCoordinate2D(latitude: lat + 1.4*d, longitude: lon - 0.2*d),
+                CLLocationCoordinate2D(latitude: lat + 1.3*d, longitude: lon - 0.3*d),
+                CLLocationCoordinate2D(latitude: lat + 1.1*d, longitude: lon - 0.25*d),
+                // Back to head
+                CLLocationCoordinate2D(latitude: lat + 1.0*d, longitude: lon + 0.05*d),
+                // Back down body
+                CLLocationCoordinate2D(latitude: lat + 0.8*d, longitude: lon - 0.1*d),
+                CLLocationCoordinate2D(latitude: lat + 0.6*d, longitude: lon - 0.2*d),
+                CLLocationCoordinate2D(latitude: lat + 0.3*d, longitude: lon - 0.15*d),
+                // Back to tail
                 CLLocationCoordinate2D(latitude: lat, longitude: lon)
             ]
             
         case "Butterfly":
-            // Parametric butterfly wings
-            for t in stride(from: 0.0, to: 2*Double.pi, by: 0.1) {
-                let x = d * cos(t) * (1 + 0.5 * sin(4*t))
-                let y = d * sin(t) * (1 + 0.5 * cos(3*t))
-                coords.append(CLLocationCoordinate2D(latitude: lat + y, longitude: lon + x))
-            }
+            // Detailed butterfly with body, antennae, and distinct wing patterns
+            coords = [
+                // Start at bottom of body
+                CLLocationCoordinate2D(latitude: lat, longitude: lon),
+                // Body (vertical line)
+                CLLocationCoordinate2D(latitude: lat + 0.8*d, longitude: lon),
+                // Left antenna
+                CLLocationCoordinate2D(latitude: lat + 0.9*d, longitude: lon + 0.1*d),
+                CLLocationCoordinate2D(latitude: lat + 1.0*d, longitude: lon + 0.15*d),
+                // Back to head
+                CLLocationCoordinate2D(latitude: lat + 0.8*d, longitude: lon),
+                // Right antenna
+                CLLocationCoordinate2D(latitude: lat + 0.9*d, longitude: lon - 0.1*d),
+                CLLocationCoordinate2D(latitude: lat + 1.0*d, longitude: lon - 0.15*d),
+                // Back to head
+                CLLocationCoordinate2D(latitude: lat + 0.8*d, longitude: lon),
+                // Upper left wing (detailed with wing patterns)
+                CLLocationCoordinate2D(latitude: lat + 0.7*d, longitude: lon + 0.3*d),
+                // Wing edge
+                CLLocationCoordinate2D(latitude: lat + 0.5*d, longitude: lon + 0.6*d),
+                CLLocationCoordinate2D(latitude: lat + 0.2*d, longitude: lon + 0.8*d),
+                CLLocationCoordinate2D(latitude: lat + 0.05*d, longitude: lon + 0.7*d),
+                // Wing tip
+                CLLocationCoordinate2D(latitude: lat + 0.1*d, longitude: lon + 0.5*d),
+                // Inner wing pattern
+                CLLocationCoordinate2D(latitude: lat + 0.3*d, longitude: lon + 0.4*d),
+                CLLocationCoordinate2D(latitude: lat + 0.4*d, longitude: lon + 0.2*d),
+                // Back to body
+                CLLocationCoordinate2D(latitude: lat + 0.8*d, longitude: lon),
+                // Upper right wing (detailed with wing patterns)
+                CLLocationCoordinate2D(latitude: lat + 0.7*d, longitude: lon - 0.3*d),
+                // Wing edge
+                CLLocationCoordinate2D(latitude: lat + 0.5*d, longitude: lon - 0.6*d),
+                CLLocationCoordinate2D(latitude: lat + 0.2*d, longitude: lon - 0.8*d),
+                CLLocationCoordinate2D(latitude: lat + 0.05*d, longitude: lon - 0.7*d),
+                // Wing tip
+                CLLocationCoordinate2D(latitude: lat + 0.1*d, longitude: lon - 0.5*d),
+                // Inner wing pattern
+                CLLocationCoordinate2D(latitude: lat + 0.3*d, longitude: lon - 0.4*d),
+                CLLocationCoordinate2D(latitude: lat + 0.4*d, longitude: lon - 0.2*d),
+                // Back to body
+                CLLocationCoordinate2D(latitude: lat + 0.8*d, longitude: lon),
+                // Lower left wing (detailed with patterns)
+                CLLocationCoordinate2D(latitude: lat + 0.6*d, longitude: lon + 0.2*d),
+                // Wing edge
+                CLLocationCoordinate2D(latitude: lat + 0.4*d, longitude: lon + 0.4*d),
+                CLLocationCoordinate2D(latitude: lat + 0.2*d, longitude: lon + 0.5*d),
+                CLLocationCoordinate2D(latitude: lat + 0.1*d, longitude: lon + 0.3*d),
+                // Inner pattern
+                CLLocationCoordinate2D(latitude: lat + 0.3*d, longitude: lon + 0.15*d),
+                // Back to body
+                CLLocationCoordinate2D(latitude: lat + 0.8*d, longitude: lon),
+                // Lower right wing (detailed with patterns)
+                CLLocationCoordinate2D(latitude: lat + 0.6*d, longitude: lon - 0.2*d),
+                // Wing edge
+                CLLocationCoordinate2D(latitude: lat + 0.4*d, longitude: lon - 0.4*d),
+                CLLocationCoordinate2D(latitude: lat + 0.2*d, longitude: lon - 0.5*d),
+                CLLocationCoordinate2D(latitude: lat + 0.1*d, longitude: lon - 0.3*d),
+                // Inner pattern
+                CLLocationCoordinate2D(latitude: lat + 0.3*d, longitude: lon - 0.15*d),
+                // Back to body
+                CLLocationCoordinate2D(latitude: lat + 0.8*d, longitude: lon),
+                // Back to start
+                CLLocationCoordinate2D(latitude: lat, longitude: lon)
+            ]
             
         case "Shrimp":
-            // Shrimp-like curved body
-            for i in 0...50 {
-                let theta = Double(i)/50 * Double.pi // half circle
-                let x = d * theta * 0.6
-                let y = d * sin(theta) * 0.5
-                coords.append(CLLocationCoordinate2D(latitude: lat + y, longitude: lon + x))
-            }
+            // Detailed shrimp with head, segmented body, tail, and legs
+            coords = [
+                // Start at tail (fan-shaped)
+                CLLocationCoordinate2D(latitude: lat, longitude: lon),
+                CLLocationCoordinate2D(latitude: lat + 0.1*d, longitude: lon + 0.2*d),
+                CLLocationCoordinate2D(latitude: lat + 0.05*d, longitude: lon + 0.3*d),
+                CLLocationCoordinate2D(latitude: lat + 0.05*d, longitude: lon - 0.3*d),
+                CLLocationCoordinate2D(latitude: lat + 0.1*d, longitude: lon - 0.2*d),
+                CLLocationCoordinate2D(latitude: lat, longitude: lon),
+                // Body segments (curved)
+                CLLocationCoordinate2D(latitude: lat + 0.2*d, longitude: lon + 0.15*d),
+                CLLocationCoordinate2D(latitude: lat + 0.4*d, longitude: lon + 0.2*d),
+                CLLocationCoordinate2D(latitude: lat + 0.6*d, longitude: lon + 0.25*d),
+                CLLocationCoordinate2D(latitude: lat + 0.8*d, longitude: lon + 0.2*d),
+                CLLocationCoordinate2D(latitude: lat + 1.0*d, longitude: lon + 0.15*d),
+                // Head
+                CLLocationCoordinate2D(latitude: lat + 1.2*d, longitude: lon + 0.1*d),
+                CLLocationCoordinate2D(latitude: lat + 1.3*d, longitude: lon),
+                // Antennae/eyes
+                CLLocationCoordinate2D(latitude: lat + 1.4*d, longitude: lon + 0.1*d),
+                CLLocationCoordinate2D(latitude: lat + 1.5*d, longitude: lon + 0.15*d),
+                CLLocationCoordinate2D(latitude: lat + 1.4*d, longitude: lon - 0.1*d),
+                CLLocationCoordinate2D(latitude: lat + 1.5*d, longitude: lon - 0.15*d),
+                // Back to head
+                CLLocationCoordinate2D(latitude: lat + 1.3*d, longitude: lon),
+                CLLocationCoordinate2D(latitude: lat + 1.2*d, longitude: lon - 0.1*d),
+                // Body segments (curved back)
+                CLLocationCoordinate2D(latitude: lat + 1.0*d, longitude: lon - 0.15*d),
+                CLLocationCoordinate2D(latitude: lat + 0.8*d, longitude: lon - 0.2*d),
+                CLLocationCoordinate2D(latitude: lat + 0.6*d, longitude: lon - 0.25*d),
+                CLLocationCoordinate2D(latitude: lat + 0.4*d, longitude: lon - 0.2*d),
+                CLLocationCoordinate2D(latitude: lat + 0.2*d, longitude: lon - 0.15*d),
+                // Back to tail
+                CLLocationCoordinate2D(latitude: lat, longitude: lon)
+            ]
             
         default:
             coords = [start]
