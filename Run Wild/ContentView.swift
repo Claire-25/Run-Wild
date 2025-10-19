@@ -15,14 +15,12 @@ struct ContentView: View {
     private func updatePosition() {
         if let lat = locationManager.userLatitude,
            let long = locationManager.userLongitude {
-            position = .camera(
-                MapCamera(
-                    centerCoordinate: CLLocationCoordinate2D(latitude: lat, longitude: long),
-                    distance: 1000, // meters - adjust this to zoom in/out (lower = more zoomed in)
-                    heading: 0,
-                    pitch: 0
+            position = .region(
+                    MKCoordinateRegion(
+                        center: CLLocationCoordinate2D(latitude: lat, longitude: long),
+                        span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+                    )
                 )
-            )
         }
     }
     
