@@ -10,7 +10,21 @@ import MapKit
 struct ContentView: View {
     @StateObject private var locationManager = LocationManager()
     
-    @State private var position: MapCameraPosition = .userLocation(fallback: .automatic)
+    @State private var position: MapCameraPosition = .automatic
+    
+    private func updatePosition() {
+        if let lat = locationManager.userLatitude,
+           let long = locationManager.userLongitude {
+            position = .camera(
+                MapCamera(
+                    centerCoordinate: CLLocationCoordinate2D(latitude: lat, longitude: long),
+                    distance: 1000, // meters - adjust this to zoom in/out (lower = more zoomed in)
+                    heading: 0,
+                    pitch: 0
+                )
+            )
+        }
+    }
     
     @State private var currentOffset: CGFloat = 400 // starting collapsed
     @State private var dragOffset: CGFloat = 0
@@ -25,6 +39,15 @@ struct ContentView: View {
             }
             .mapStyle(.standard)
             .ignoresSafeArea()
+            .onAppear {
+                updatePosition()
+            }
+            .onChange(of: locationManager.userLatitude) {
+                updatePosition()
+            }
+            .onChange(of: locationManager.userLongitude) {
+                updatePosition()
+            }
             
             // Dim background when panel up
             Color.black
