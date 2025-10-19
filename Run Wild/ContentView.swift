@@ -10,17 +10,24 @@ import MapKit
 struct ContentView: View {
     @StateObject private var locationManager = LocationManager()
     
-    @State private var position: MapCameraPosition = .automatic
+    @State private var position: MapCameraPosition = .region(
+        MKCoordinateRegion(
+            center: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194),
+            span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        )
+    )
     
     private func updatePosition() {
         if let lat = locationManager.userLatitude,
            let long = locationManager.userLongitude {
-            position = .region(
+            withAnimation {
+                position = .region(
                     MKCoordinateRegion(
                         center: CLLocationCoordinate2D(latitude: lat, longitude: long),
                         span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
                     )
                 )
+            }
         }
     }
     
